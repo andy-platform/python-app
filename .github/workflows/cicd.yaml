@@ -2,7 +2,7 @@ name: cicd
 
 permissions:
   contents: write
-
+  
 on:
   push:
     paths:
@@ -56,7 +56,7 @@ jobs:
       - name: Install argocd
         shell: bash
         run: |
-          curl -ksSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64 
+          curl -ksSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
 
       - name: Argocd app sync
         shell: bash
