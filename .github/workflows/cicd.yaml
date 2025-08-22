@@ -7,8 +7,8 @@ on:
   push:
     tags:
       - 'v*'  # Match version tags like v1, v2, etc.
-    # paths:
-    #   - src/**
+    paths:
+      - src/**
     branches:
       - main
 
@@ -75,15 +75,15 @@ jobs:
       #     curl -ksSL -o argocd https://argocd-server.argocd/download/argocd-linux-amd64
 
 
-      # - name: Argocd app sync
-      #   shell: bash
-      #   run: |
-      #     argocd login argocd-server.argocd \
-      #       --insecure  \
-      #       --grpc-web \
-      #       --username ${{ secrets.ARGOCD_USER }} \
-      #       --password  ${{ secrets.ARGOCD_PASSWORD }}
-      #     argocd app sync python-app
+      - name: Argocd app sync
+        shell: bash
+        run: |
+          argocd login argocd-server.argocd \
+            --insecure  \
+            --grpc-web \
+            --username ${{ secrets.ARGOCD_USER }} \
+            --password  ${{ secrets.ARGOCD_PASSWORD }}
+          argocd app sync python-app
 
 
 #### Commit-ID
