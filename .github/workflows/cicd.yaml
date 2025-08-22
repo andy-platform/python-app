@@ -53,14 +53,14 @@ jobs:
         with:
           message: 'Updates values.yaml with commit ${{needs.ci.outputs.commit_id}}'
 
-      # - name: Install argocd
-      #   shell: bash
-      #   run: |
-      #     curl -ksSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
       - name: Install argocd
         shell: bash
         run: |
-          curl -ksSL -o argocd https://argocd-server.argocd/download/argocd-linux-amd64
+          curl -ksSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+      # - name: Install argocd
+      #   shell: bash
+      #   run: |
+      #     curl -ksSL -o argocd https://argocd-server.argocd/download/argocd-linux-amd64
 
 
       - name: Argocd app sync
