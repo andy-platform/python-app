@@ -36,7 +36,7 @@ jobs:
 
   cd:
     needs: ci
-    runs-on: ubuntu-latest #self-hosted
+    runs-on: self-hosted
     steps:
 
       - uses: actions/checkout@v3
