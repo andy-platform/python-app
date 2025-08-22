@@ -57,6 +57,7 @@ jobs:
         shell: bash
         run: |
           curl -ksSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          chmod +x /usr/local/bin/argocd
       # - name: Install argocd
       #   shell: bash
       #   run: |
