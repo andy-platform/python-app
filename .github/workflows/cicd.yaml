@@ -70,7 +70,7 @@ jobs:
         run: |
           curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-darwin-arm64
           chmod +x argocd
-        #  sudo mv argocd /usr/local/bin/argocd
+          sudo mv argocd /usr/local/bin/argocd
 
       # - name: Install argocd
       #   shell: bash
@@ -81,7 +81,7 @@ jobs:
       - name: Argocd app sync
         shell: bash
         run: |
-          ./argocd login argocd-server.argocd \
+          argocd login argocd-server.argocd \
             --insecure  \
             --grpc-web \
             --username ${{ secrets.ARGOCD_USER }} \
