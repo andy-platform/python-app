@@ -33,7 +33,7 @@ jobs:
           tags: andynze4/python-app:${{ env.COMMIT_ID }}
     outputs:
       commit_id: ${{ env.COMMIT_ID }}
-
+###
   # cd:
   #   needs: ci
   #   runs-on: self-hosted
