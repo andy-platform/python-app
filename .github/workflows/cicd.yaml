@@ -7,8 +7,8 @@ on:
   push:
     tags:
       - 'v*'  # Match version tags like v1, v2, etc.
-    paths:
-      - src/**
+    # paths:
+    #   - src/**
     branches:
       - main
 
@@ -46,7 +46,7 @@ jobs:
 
   cd:
     needs: ci
-    runs-on: ubuntu-latest # self-hosted
+    runs-on: self-hosted
     steps:
 
       - uses: actions/checkout@v3
@@ -63,12 +63,13 @@ jobs:
         with:
           message: 'Updates values.yaml with commit ${{needs.ci.outputs.commit_id}}'
 
-      # - name: Install argocd
-      #   shell: bash
-      #   run: |
-      #     curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
-      #     chmod +x argocd
-      #     sudo mv argocd /usr/local/bin/argocd
+      - name: Install argocd
+        shell: bash
+        run: |
+          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-darwin-arm64
+          chmod +x argocd
+          sudo mv argocd /usr/local/bin/argocd
+
       # - name: Install argocd
       #   shell: bash
       #   run: |
