@@ -117,7 +117,7 @@ jobs:
           push: true
           tags: |
             andynze4/python-app:${{ steps.shorten.outputs.commit_id }}
-            andynze4/python-app:${{ github.event.inputs.version }}
+            ${{ github.event.inputs.version && format('andynze4/python-app:{0}', github.event.inputs.version) }}
 
   # cd:
   #   needs: ci
