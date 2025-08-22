@@ -9,7 +9,7 @@ def info():
     return jsonify({
         'time': datetime.datetime.now().strftime("%I:%M:%S%p  on %B %d, %Y"),
         'hostname': socket.gethostname(),
-        'message': 'Andy_Best, you are doing great, don\'t mind Vivek, he is a goat. Docker Container Running! :)',
+        'message': 'Andy_Best, you are doing great, don\'t mind Vivek, he is a FOOL and a Goat. Docker Container Running! :)',
         'deployed_on': 'kubernetes'
     })
 
@@ -25,7 +25,7 @@ if __name__ == '__main__':
     app.run(host="0.0.0.0")
 
 
-# #######
+# ######
 # from flask import Flask, jsonify
 # import datetime
 # import socket
