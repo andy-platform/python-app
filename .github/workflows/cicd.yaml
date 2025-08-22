@@ -1,38 +1,38 @@
-# name: cicd
+name: cicd
 
-# permissions:
-#   contents: write
+permissions:
+  contents: write
   
-# on:
-#   push:
-#     # paths:
-#     #   - src/**
-#     branches:
-#       - main
+on:
+  push:
+    # paths:
+    #   - src/**
+    branches:
+      - main
 
-# jobs:
-#   ci:
-#     runs-on: ubuntu-latest
-#     steps:
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
 
-#       - name: Shorten commit id
-#         shell: bash
-#         run: |
-#           echo "COMMIT_ID=${GITHUB_SHA::6}" >> "$GITHUB_ENV"
-#       -
-#         name: Login to Docker Hub
-#         uses: docker/login-action@v3
-#         with:
-#           username: ${{ secrets.DOCKERHUB_USERNAME }}
-#           password: ${{ secrets.DOCKERHUB_TOKEN }}
-#       -
-#         name: Build and push
-#         uses: docker/build-push-action@v6
-#         with:
-#           push: true
-#           tags: andynze4/python-app:${{ env.COMMIT_ID }}
-#     outputs:
-#       commit_id: ${{ env.COMMIT_ID }}
+      - name: Shorten commit id
+        shell: bash
+        run: |
+          echo "COMMIT_ID=${GITHUB_SHA::6}" >> "$GITHUB_ENV"
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: andynze4/python-app:${{ env.COMMIT_ID }}
+    outputs:
+      commit_id: ${{ env.COMMIT_ID }}
 
 #   cd:
 #     needs: ci
@@ -73,52 +73,54 @@
 #             --password  ${{ secrets.ARGOCD_PASSWORD }}
 #           argocd app sync python-app
 
-name: cicd
 
-permissions:
-  contents: write
+#### Commit-ID
+# name: cicd
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Docker tag version (e.g. v1, v2)'
-        required: true
+# permissions:
+#   contents: write
 
-env:
-  VERSION_TAG: ${{ github.event.inputs.version }}
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
+#     inputs:
+#       version:
+#         description: 'Docker tag version (e.g. v1, v2)'
+#         required: true
 
-jobs:
-  ci:
-    runs-on: ubuntu-latest
-    outputs:
-      commit_id: ${{ steps.shorten.outputs.commit_id }}
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v3
+# env:
+#   VERSION_TAG: ${{ github.event.inputs.version }}
 
-      - name: Shorten commit id
-        id: shorten
-        shell: bash
-        run: echo "commit_id=${GITHUB_SHA::6}" >> $GITHUB_OUTPUT
+# jobs:
+#   ci:
+#     runs-on: ubuntu-latest
+#     outputs:
+#       commit_id: ${{ steps.shorten.outputs.commit_id }}
+#     steps:
+#       - name: Checkout source
+#         uses: actions/checkout@v3
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#       - name: Shorten commit id
+#         id: shorten
+#         shell: bash
+#         run: echo "commit_id=${GITHUB_SHA::6}" >> $GITHUB_OUTPUT
 
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v6
-        with:
-          push: true
-          tags: |
-            andynze4/python-app:${{ steps.shorten.outputs.commit_id }}
-            ${{ github.event.inputs.version && format('andynze4/python-app:{0}', github.event.inputs.version) }}
-###
+#       - name: Login to Docker Hub
+#         uses: docker/login-action@v3
+#         with:
+#           username: ${{ secrets.DOCKERHUB_USERNAME }}
+#           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+#       - name: Build and push Docker images
+#         uses: docker/build-push-action@v6
+#         with:
+#           push: true
+#           tags: |
+#             andynze4/python-app:${{ steps.shorten.outputs.commit_id }}
+#             ${{ github.event.inputs.version && format('andynze4/python-app:{0}', github.event.inputs.version) }}
+
   # cd:
   #   needs: ci
   #   runs-on: ubuntu-latest
