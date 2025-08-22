@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: andynze4/python-app
   pullPolicy: IfNotPresent
-  tag: ba994e
+  tag: 090b77
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -18,15 +18,16 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 5000
+
 ingress:
   enabled: true
   className: "nginx"
   annotations: {}
   hosts:
-    - host: python-app.test.com
-      paths:
-        - path: /
-          pathType: Prefix
+  - host: python-app.test.com
+    paths:
+    - path: /
+      pathType: Prefix
   tls: []
 resources:
   requests:
