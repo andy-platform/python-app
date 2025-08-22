@@ -46,7 +46,7 @@ jobs:
 
   cd:
     needs: ci
-    runs-on: self-hosted
+    runs-on: self-hosted-runners # self-hosted
     steps:
 
       - uses: actions/checkout@v3
