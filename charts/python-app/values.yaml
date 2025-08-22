@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: andynze4/python-app
   pullPolicy: IfNotPresent
-  tag: 19e1070
+  tag: d07adc
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
