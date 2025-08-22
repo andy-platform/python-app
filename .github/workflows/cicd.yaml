@@ -69,6 +69,7 @@ jobs:
         shell: bash
         run: |
           curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-darwin-arm64
+          mv argocd* argocd
           chmod +x argocd
           sudo mv argocd /usr/local/bin/argocd
 
