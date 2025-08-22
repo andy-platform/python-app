@@ -83,7 +83,7 @@ jobs:
           ./argocd app sync python-app
 
 
-### Commit-ID
+## Commit-ID
 # name: cicd
 
 # permissions:
