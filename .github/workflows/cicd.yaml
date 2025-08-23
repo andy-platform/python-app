@@ -46,9 +46,7 @@ jobs:
         shell: bash
         run: |
           echo ${{needs.ci.outputs.commit_id}}
-          python3 -m pip install --upgrade pip
-          python3 -m pip install yq
-          export PATH="$HOME/Library/Python/3.12/bin:$PATH"
+          pip install yq
           yq -Yi '.image.tag = "${{needs.ci.outputs.commit_id}}"' charts/python-app/values.yaml
 
       - name: Commit changes
