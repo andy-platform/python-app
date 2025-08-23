@@ -65,22 +65,22 @@ jobs:
         with:
           message: 'Updates values.yaml with commit ${{needs.ci.outputs.commit_id}}'
 
-      - name: Install argocd
-        shell: bash
-        run: |
-          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-darwin-arm64
-          chmod +x argocd
+      # - name: Install argocd
+      #   shell: bash
+      #   run: |
+      #     curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-darwin-arm64
+      #     chmod +x argocd
 
       - name: Argocd app sync
         shell: bash
         run: |
-          ./argocd login argocd.test.com:30443 \
-            --username ${{ secrets.ARGOCD_USER }} \
+          argocd login argocd.test.com:30443 \
+            --username admin \
             --password ${{ secrets.ARGOCD_PASSWORD }} \
             --insecure \
             --grpc-web
 
-          ./argocd app sync python-app
+          argocd app sync python-app
 
 
 ### Commit-ID
