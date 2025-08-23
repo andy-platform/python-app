@@ -64,7 +64,7 @@ jobs:
 #           chmod +x argocd
 #           sudo mv argocd /usr/local/bin/argocd
 
-# Download and install ArgoCD CLI from Installation
+# Download and install ArgoCD CLI from Installation.
       - name: Install ArgoCD CLI
         shell: bash
         run: |
