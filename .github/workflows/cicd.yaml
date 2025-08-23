@@ -68,9 +68,10 @@ jobs:
       - name: Install ArgoCD CLI
         shell: bash
         run: |
-          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+          curl -sSL -o argocd.tar.gz https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64.tar.gz
+          tar -xzf argocd.tar.gz
           chmod +x argocd
-          sudo mv argocd /usr/local/bin/argocd
+          mv argocd /usr/local/bin/argocd
 
       - name: Argocd app sync
         shell: bash
