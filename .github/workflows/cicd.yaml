@@ -7,8 +7,8 @@ on:
   push:
     tags:
       - 'v*'  # Match version tags like v1, v2, etc.
-    paths:
-      - src/**
+    # paths:
+    #   - src/**
     branches:
       - main
 
