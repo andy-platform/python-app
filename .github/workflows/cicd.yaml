@@ -48,11 +48,11 @@ jobs:
           echo ${{needs.ci.outputs.commit_id}}
           pip install yq
           yq -Yi '.image.tag = "${{needs.ci.outputs.commit_id}}"' charts/python-app/values.yaml
-
+ 
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
-          message: 'Updates values.yaml with commit ${{needs.ci.outputs.commit_id}}'
+          message: 'Updating values.yaml with new commit ${{needs.ci.outputs.commit_id}}'
 
 # # Download and install ArgoCD CLI from Internet
 #       - name: Install ArgoCD CLI
