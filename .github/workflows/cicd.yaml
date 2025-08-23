@@ -73,11 +73,9 @@ jobs:
       - name: Install ArgoCD CLI
         shell: bash
         run: |
-          mkdir -p $HOME/bin
           curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-arm64
-          chmod +x $HOME/bin/argocd
-          mv argocd /usr/local/bin/argocd
-          echo "$HOME/bin" >> $GITHUB_PATH
+          chmod +x argocd
+          sudo mv argocd /usr/local/bin/argocd
 
       - name: Argocd app sync
         shell: bash
