@@ -65,11 +65,6 @@ jobs:
         with:
           message: 'Updates values.yaml with commit ${{needs.ci.outputs.commit_id}}'
       
-      - name: Debug environment
-        run: |
-          uname -a
-          arch
-
       - name: Install ArgoCD CLI
         shell: bash
         run: |
