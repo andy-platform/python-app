@@ -54,7 +54,7 @@ jobs:
         with:
           message: 'Updating values.yaml with new commit ${{needs.ci.outputs.commit_id}}'
 
-# # Download and install ArgoCD CLI from Internet
+## # Download and install ArgoCD CLI from Internet
 #       - name: Install ArgoCD CLI
 #         shell: bash
 #         run: |
