@@ -41,6 +41,7 @@ jobs:
 
       - uses: actions/checkout@v3
 
+# Modify values.yaml file with new image tag
       - name: Modify values file
         shell: bash
         run: |
@@ -54,14 +55,24 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Updates values.yaml with commit ${{needs.ci.outputs.commit_id}}'
-      
+
+# # Download and install ArgoCD CLI from Internet
+#       - name: Install ArgoCD CLI
+#         shell: bash
+#         run: |
+#           curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-arm64
+#           chmod +x argocd
+#           sudo mv argocd /usr/local/bin/argocd
+
+# Download and install ArgoCD CLI from Installation
       - name: Install ArgoCD CLI
         shell: bash
         run: |
-          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-arm64
+          curl -ksSL -o argocd https://argocd-server.argocd/download/argocd-linux-arm64
           chmod +x argocd
           sudo mv argocd /usr/local/bin/argocd
 
+        
       # - name: Argocd app sync
       #   shell: bash
       #   run: |
