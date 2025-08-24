@@ -91,5 +91,5 @@ jobs:
           --insecure \
           --grpc-web
 
-          argocd app sync python-app
+          argocd app sync flask-app
   
